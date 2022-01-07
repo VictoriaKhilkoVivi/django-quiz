@@ -8,4 +8,16 @@ class QuizResultService():
         self.answers_dto = answers_dto
 
     def get_result(self) -> float:
-        # your code here
+        # if not self.quiz_dto.uuid == self.answers_dto.quiz_uuid:
+        #     return -1.00
+
+        count_correct = 0
+        count_all = len(self.quiz_dto.questions)
+
+        for question in self.quiz_dto.questions:
+            correct_choices = [correct_choice.uuid for correct_choice in question.choices
+                               if correct_choice.is_correct is True]
+            if self.answers_dto.answers[int(self.quiz_dto.questions.index(question))].choices == correct_choices:
+                count_correct += 1
+
+        return count_correct/count_all
