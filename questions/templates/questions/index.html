@@ -1,0 +1,8 @@
+{% extends "questions/base.html" %}
+{% block title %}Начать тест{% endblock %}
+{% block content %}
+<div class="row"><h1>Список тестов:</h1></div>
+{% for quiz in quizzes %}
+<div class="row"><h1><a href="{% url 'quiz' quiz.id %}">{{ quiz.title }}</a></h1></div>
+{% endfor %}
+{% endblock %}
