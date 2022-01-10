@@ -5,16 +5,17 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    <div class="row"><h1>Вопрос №{{ number_question }}</h1></div>
-    <div class="row"><h4>{{ question.text }}</h4></div>
+    <h1>Вопрос №{{ number_question }}</h1>
+<br/>
+    <h4>{{ question.text }}</h4>
+<br/>
 {% for choice in choices %}
-    <div class="row py-2">
-        <input type="checkbox"
-               class="form-check-input"
-               id="{{ choice.id }}"
-               name="{{ forloop.counter }}"
-               value="{{ choice.id }}"> <div class="question"><h5>{{ choice.text }}</h5></div>
-    </div>
+    <input type="checkbox"
+           class="form-check-input"
+           id="{{ choice.id }}"
+           name="{{ forloop.counter }}"
+           value="{{ choice.id }}"> <div class="question"><h5>{{ choice.text }}</h5></div>
+    <br/>
 {% endfor %}
 
 {% if finish %}
