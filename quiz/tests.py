@@ -296,3 +296,39 @@ class QuizTestCase(TestCase):
         )
 
         self.assertEqual(quiz_result_service.get_result(), 0.00)
+
+    def test_two_success_other_wrong_quiz_result(self):
+        answers: List[AnswerDTO] = [
+            AnswerDTO(
+                "1-1",
+                ["1-1-1"]
+            ),
+            AnswerDTO(
+                "1-2",
+                ["1-2-1"]
+            ),
+            AnswerDTO(
+                "1-3",
+                ["1-3-1"]
+            ),
+            AnswerDTO(
+                "1-4",
+                ["1-4-1", "1-4-4"]
+            ),
+            AnswerDTO(
+                "1-5",
+                ["1-5-2", "1-5-3"]
+            )
+        ]
+
+        answers_dto = AnswersDTO(
+            "1",
+            answers
+        )
+
+        quiz_result_service = QuizResultService(
+            self.quiz_dto,
+            answers_dto
+        )
+
+        self.assertEqual(quiz_result_service.get_result(), 0.40)
