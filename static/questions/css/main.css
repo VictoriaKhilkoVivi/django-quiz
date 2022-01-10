@@ -1,0 +1,23 @@
+.main {
+  min-height: 90%;
+  margin-left: 20px;
+}
+.footer{
+  min-height: 10%;
+}
+.question{
+    margin-left: 25px;
+    margin-top: -20px;
+}
+button{
+    margin-top: 10px;
+}
+a{
+    text-decoration: none;
+}
+.logo{
+    font-family: 'Droid serif', serif;
+    font-size: 36px; font-weight: 400;
+    font-style: italic;
+    line-height: 44px;
+}

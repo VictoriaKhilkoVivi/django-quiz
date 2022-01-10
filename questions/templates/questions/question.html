@@ -1,23 +1,26 @@
 {% extends "questions/base.html" %}
+{% load static %}
 {% block title %}Тест{% endblock %}
 {% block content %}
 
 <form action="" method="post">
     {% csrf_token %}
     <div class="row"><h1>Вопрос №{{ number_question }}</h1></div>
-    <div class="row">{{ question.text }}</div>
+    <div class="row"><h4>{{ question.text }}</h4></div>
 {% for choice in choices %}
-    <div class="row py-1">
-        <label for="{{ choice.id }}">{{ choice.text }}</label>
-        <input type="checkbox" id="{{ choice.id }}" name="{{ forloop.counter }}" value="{{ choice.id }}">
+    <div class="row py-2" class="right">
+        <input type="checkbox"
+               class="form-check-input"
+               id="{{ choice.id }}"
+               name="{{ forloop.counter }}"
+               value="{{ choice.id }}"> <div class="question"><h5>{{ choice.text }}</h5></div>
     </div>
 {% endfor %}
 
-
 {% if finish %}
-<button type="submit">Завершить тест</button>
+<button class="w-10 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Завершить тест</button>
 {% else %}
-<button type="submit">Следующий вопрос</button>
+<button class="w-10 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Следующий вопрос</button>
 {% endif %}
 
 </form>

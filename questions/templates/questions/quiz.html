@@ -1,6 +1,7 @@
 {% extends "questions/base.html" %}
+{% load static %}
 {% block title %}Начать тест{% endblock %}
 {% block content %}
-<div class="row"><h1>Тест по теме {{ quiz.title }}</h1></div>
+<div class="row"><h1>Тест по теме "{{ quiz.title }}"</h1></div>
 <div class="row"><h1><a href="{% url 'question' quiz.id id_q %}">Начать тест</a></h1></div>
 {% endblock %}
