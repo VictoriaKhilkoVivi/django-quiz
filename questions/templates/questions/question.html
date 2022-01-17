@@ -10,11 +10,19 @@
     <h4>{{ question.text }}</h4>
 <br/>
 {% for choice in choices %}
-    <input type="checkbox"
+    {% if type_button == 'radio' %}
+    <input type="{{ type_button }}"
+           class="form-check-input"
+           id="{{ choice.id }}"
+           name="{{ number_question }}"
+           value="{{ forloop.counter }}"> <div class="question"><h5>{{ choice.text }}</h5></div>
+    {% else %}
+    <input type="{{ type_button }}"
            class="form-check-input"
            id="{{ choice.id }}"
            name="{{ forloop.counter }}"
            value="{{ choice.id }}"> <div class="question"><h5>{{ choice.text }}</h5></div>
+    {% endif %}
     <br/>
 {% endfor %}
 

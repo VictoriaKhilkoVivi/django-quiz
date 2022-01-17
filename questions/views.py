@@ -31,6 +31,12 @@ def question(request, id_quiz, number_question):
     questions = Question.objects.filter(quiz=id_quiz)
     question = questions[number_question - 1]
     choices = Choice.objects.filter(question=question.id)
+
+    truth = [choice.is_correct for choice in choices]
+    type_button = "radio"
+    if truth.count(True) > 1:
+        type_button = "checkbox"
+
     finish = number_question == len(Question.objects.filter(quiz=id_quiz))
 
     if request.method == 'POST':
@@ -38,7 +44,10 @@ def question(request, id_quiz, number_question):
         request.session[question.number] = []
         for k, v in request.POST.items():
             if k.isnumeric():
-                request.session[question.number].append(k)
+                if type_button == "radio":
+                    request.session[question.number].append(v)
+                else:
+                    request.session[question.number].append(k)
         if finish:
             return redirect('result')
         return redirect('question', id_quiz, number_question + 1)
@@ -49,6 +58,7 @@ def question(request, id_quiz, number_question):
         'choices': choices,
         'number_question': number_question,
         'next': number_question + 1,
+        'type_button': type_button,
         'finish': finish,
     }
 
